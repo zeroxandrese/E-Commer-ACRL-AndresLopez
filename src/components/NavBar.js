@@ -33,7 +33,9 @@ function NavBar() {
                     </Dropdown>
                 </ul>
             </div>
+            <button>
             <Cartwidget />
+            </button>
         </div>
 
     )
