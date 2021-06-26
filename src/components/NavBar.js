@@ -1,4 +1,4 @@
-import { Dropdown, NavDropdown } from 'react-bootstrap';
+import { NavDropdown } from 'react-bootstrap';
 import React from 'react';
 import './NavBar.css';
 import Cartwidget from './Cartwidget';
@@ -20,10 +20,9 @@ function NavBar() {
                     <li className="nav-item">
                         <a className="nav-link active" href="#">Contactanos</a>
                     </li>
-                    <NavDropdown title="Catalogo" id="basic-nav-dropdown">n
-                        <NavDropdown.Item href="#action/3.1">Ropa Adultos</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Ropa Niños</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Accesorios</NavDropdown.Item>
+                    <NavDropdown title="Catalogo" id="basic-nav-dropdown">
+                        <NavDropdown.Item href="#action/3.1">Zapatos Para Adultos</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.2">Zapatos Para Niños</NavDropdown.Item>
                     </NavDropdown>
                 </ul>
             </div>
