@@ -1,28 +1,22 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Card, Button } from 'react-bootstrap';
 import './Items.css';
 
-function Items(props,{items}) {
-    const [producto, setProducto] = useState([]);
+function CategoryListContainer() {
+    const { categoryName } = useParams();
+    const [items, setItems] = useState([]);
     const [cantidadSolicitada, setCantidadSolicitada] = useState({});
 
-
     useEffect(() => {
-        productos();
-    }, []);
-
-    const productos = async () => {
-        const data = await fetch('https://run.mocky.io/v3/b2d48a90-be5b-4cef-88e8-092e545bc629');
-        const item = await data.json();
-        setProducto(item);
-        const cantidadesIniciales = {};
-        item.forEach(element => {
-            cantidadesIniciales[element.ID] = 0;
-        });
-        setCantidadSolicitada(cantidadesIniciales)
-    };
-
+        (async () => {
+            const data = await fetch('https://run.mocky.io/v3/b2d48a90-be5b-4cef-88e8-092e545bc629');
+            if(!categoryName) return setItems(data);
+            const item = await data.json();
+            const categoryFinal = item.filter(x => x.category === categoryName);
+            setItems(categoryFinal);
+        })();
+    }, [categoryName]);
 
     const Incremento = useCallback(
         (x) => {
@@ -49,8 +43,9 @@ function Items(props,{items}) {
         },
         []
     );
+
     const construirCards = listaElementos => {
-        return listaElementos.map(x => {
+        return items.map(x => {
             return (
                 <Card key={x.ID} className='cardsh' style={{ width: '18rem' }}>
                     <Link to={`/item/${x.ID}`}>
@@ -75,10 +70,10 @@ function Items(props,{items}) {
     return (
         <div className='cards'>
 
-            {construirCards(producto)}
+            {construirCards(items)}
 
         </div>
     )
 }
 
-export default Items
+export default CategoryListContainer
