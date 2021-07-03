@@ -15,6 +15,11 @@ function CategoryListContainer() {
             const item = await data.json();
             const categoryFinal = item.filter(x => x.category === categoryName);
             setItems(categoryFinal);
+            const cantidadesIniciales = {};
+        item.forEach(element => {
+            cantidadesIniciales[element.ID] = 0;
+        });
+        setCantidadSolicitada(cantidadesIniciales)
         })();
     }, [categoryName]);
 

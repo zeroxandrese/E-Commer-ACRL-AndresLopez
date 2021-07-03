@@ -11,7 +11,7 @@ const history = useHistory();
 const selectCategory = (e) => {
  if (e.target.value)
  history.push(`/category/${e.target.value}`);
-};
+} 
 
     return (
         <div className="navbar navbar-expand-lg navbar-dark bg-dark text-center">
@@ -32,19 +32,10 @@ const selectCategory = (e) => {
                     </li>
                     <select onChange={selectCategory}>
                         <option value="">Seleccione Categoria</option>
-                        <option value="">Zapatos para hombre</option>
-                        <option value="">Zapatos para mujer</option>
-                        <option value="">Zapatos para niño</option>
+                        <option value="hombre">Zapatos para hombre</option>
+                        <option value="mujer">Zapatos para mujer</option>
+                        <option value="niño">Zapatos para niño</option>
                     </select>
-                    {/* <NavDropdown title="Catalogo" id="basic-nav-dropdown">
-                        <Link to="/hombre">
-                        <NavDropdown.Item >Zapatos Para Hombres</NavDropdown.Item>
-                        </Link>
-                        <Link to="/mujer">
-                        <NavDropdown.Item >Zapatos Para Mujeres</NavDropdown.Item>
-                        </Link>
-                        <NavDropdown.Item to="/niño">Zapatos Para Niños</NavDropdown.Item>
-                    </NavDropdown> */}
                 </ul>
             </div>
             <Cartwidget />
