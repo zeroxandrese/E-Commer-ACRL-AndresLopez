@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import './Items.css';
 
 function CategoryListContainer() {
     const { categoryName } = useParams();
     const [items, setItems] = useState([]);
-    const [cantidadSolicitada, setCantidadSolicitada] = useState({});
 
     useEffect(() => {
         (async () => {
@@ -15,39 +14,8 @@ function CategoryListContainer() {
             const item = await data.json();
             const categoryFinal = item.filter(x => x.category === categoryName);
             setItems(categoryFinal);
-            const cantidadesIniciales = {};
-        item.forEach(element => {
-            cantidadesIniciales[element.ID] = 0;
-        });
-        setCantidadSolicitada(cantidadesIniciales)
         })();
     }, [categoryName]);
-
-    const Incremento = useCallback(
-        (x) => {
-            setCantidadSolicitada(valorPrevio => {
-                const nuevaCantidad = valorPrevio[x.ID] + 1;
-                return ({
-                    ...valorPrevio,
-                    [x.ID]: x.stock >= nuevaCantidad ? nuevaCantidad : valorPrevio[x.ID]
-                })
-            })
-        },
-        []
-    );
-
-    const Decremento = useCallback(
-        (x) => {
-            setCantidadSolicitada(valorPrevio => {
-                const nuevaCantidad = valorPrevio[x.ID] - 1;
-                return ({
-                    ...valorPrevio,
-                    [x.ID]: nuevaCantidad >= 0 ? nuevaCantidad : valorPrevio[x.ID]
-                })
-            })
-        },
-        []
-    );
 
     const construirCards = listaElementos => {
         return items.map(x => {
@@ -59,13 +27,9 @@ function CategoryListContainer() {
                     <Card.Body>
                         <Card.Title >{x.producto}</Card.Title>
                         <Card.Text className="contenidoCard">
-                            <p className="contador">{Number(cantidadSolicitada[x.ID])}</p>
+                            <h6>Stock disponible</h6>
+                            <p className="contador">{x.stock}</p>
                         </Card.Text>
-                        <Button onClick={() => Incremento(x)} variant="primary">+</Button>
-                        <Button onClick={() => Decremento(x)} variant="primary">-</Button>
-                        <div>
-                            <Button variant="primary">Agregar al Carrito</Button>
-                        </div>
                     </Card.Body>
                 </Card>
             )

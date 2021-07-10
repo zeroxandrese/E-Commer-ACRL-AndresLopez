@@ -5,7 +5,6 @@ import './Items.css';
 
 function Items(props,{items}) {
     const [producto, setProducto] = useState([]);
-    const [cantidadSolicitada, setCantidadSolicitada] = useState({});
 
 
     useEffect(() => {
@@ -16,39 +15,8 @@ function Items(props,{items}) {
         const data = await fetch('https://run.mocky.io/v3/b2d48a90-be5b-4cef-88e8-092e545bc629');
         const item = await data.json();
         setProducto(item);
-        const cantidadesIniciales = {};
-        item.forEach(element => {
-            cantidadesIniciales[element.ID] = 0;
-        });
-        setCantidadSolicitada(cantidadesIniciales)
     };
 
-
-    const Incremento = useCallback(
-        (x) => {
-            setCantidadSolicitada(valorPrevio => {
-                const nuevaCantidad = valorPrevio[x.ID] + 1;
-                return ({
-                    ...valorPrevio,
-                    [x.ID]: x.stock >= nuevaCantidad ? nuevaCantidad : valorPrevio[x.ID]
-                })
-            })
-        },
-        []
-    );
-
-    const Decremento = useCallback(
-        (x) => {
-            setCantidadSolicitada(valorPrevio => {
-                const nuevaCantidad = valorPrevio[x.ID] - 1;
-                return ({
-                    ...valorPrevio,
-                    [x.ID]: nuevaCantidad >= 0 ? nuevaCantidad : valorPrevio[x.ID]
-                })
-            })
-        },
-        []
-    );
     const construirCards = listaElementos => {
         return listaElementos.map(x => {
             return (
@@ -59,13 +27,9 @@ function Items(props,{items}) {
                     <Card.Body>
                         <Card.Title >{x.producto}</Card.Title>
                         <Card.Text className="contenidoCard">
-                            <p className="contador">{Number(cantidadSolicitada[x.ID])}</p>
+                            <h6>STOCK DISPONIBLE</h6> 
+                            <p className="contador">{x.stock}</p>
                         </Card.Text>
-                        <Button onClick={() => Incremento(x)} variant="primary">+</Button>
-                        <Button onClick={() => Decremento(x)} variant="primary">-</Button>
-                        <div>
-                            <Button variant="primary">Agregar al Carrito</Button>
-                        </div>
                     </Card.Body>
                 </Card>
             )

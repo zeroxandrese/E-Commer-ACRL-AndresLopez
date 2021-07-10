@@ -6,11 +6,14 @@ import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import Contactenos from './components/Contactenos';
 import CategoryListContainer from './components/CategoryListContainer';
+import { CartProvider } from './context/CartContext';
+import Carrito from './components/Carrito';
 
 class App extends React.Component {
   render() {
     return (
       <div className="container-fluid">
+        <CartProvider>
         <BrowserRouter>
           <NavBar />
           <Switch>
@@ -26,8 +29,12 @@ class App extends React.Component {
             <Route path="/category/:categoryName">
             <CategoryListContainer />
             </Route>
+            <Route>
+              <Carrito />
+            </Route>
           </Switch>
         </BrowserRouter>
+        </CartProvider>
       </div>
     );
   }

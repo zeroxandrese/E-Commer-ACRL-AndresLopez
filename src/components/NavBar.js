@@ -1,22 +1,22 @@
-import { NavDropdown } from 'react-bootstrap';
-import React from 'react';
+import { NavDropdown, Button } from 'react-bootstrap';
+import React, { useEffect } from 'react';
 import './NavBar.css';
 import Cartwidget from './Cartwidget';
 import { Link, useHistory } from 'react-router-dom';
 
 
 function NavBar() {
-const history = useHistory();
+    const history = useHistory();
 
-const selectCategory = (e) => {
- if (e.target.value)
- history.push(`/category/${e.target.value}`);
-} 
+    const selectCategory = (e) => {
+        if (e.target.value)
+            history.push(`/category/${e.target.value}`);
+    }
 
     return (
         <div className="navbar navbar-expand-lg navbar-dark bg-dark text-center">
             <Link to="/">
-            <h1 id="titleNav">Bienvenidos a ARCL Shop</h1>
+                <h1 id="titleNav">Bienvenidos a ARCL Shop</h1>
             </Link>
             <div className="container-fluid">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
