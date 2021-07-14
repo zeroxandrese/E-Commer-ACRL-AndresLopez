@@ -9,7 +9,7 @@ function CategoryListContainer() {
 
     useEffect(() => {
         (async () => {
-            const data = await fetch('https://run.mocky.io/v3/b2d48a90-be5b-4cef-88e8-092e545bc629');
+            const data = await fetch('https://run.mocky.io/v3/6b696f7e-4939-405e-ae49-e6439fba2be4');
             if(!categoryName) return setItems(data);
             const item = await data.json();
             const categoryFinal = item.filter(x => x.category === categoryName);
@@ -38,9 +38,7 @@ function CategoryListContainer() {
 
     return (
         <div className='cards'>
-
             {construirCards(items)}
-
         </div>
     )
 }

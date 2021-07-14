@@ -1,5 +1,5 @@
 import React, { useContext, useState, useCallback, useEffect } from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { cartContext } from '../context/CartContext';
 import ItemCount from './ItemCount';
 
@@ -7,7 +7,7 @@ function ItemDetail({ ...elemento }) {
     const context = useContext(cartContext);
     const { carrito, añadirCarrito } = useContext(cartContext);
     const onAdd = cantidad => añadirCarrito(elemento, cantidad);
-    console.log(carrito);
+    
     return (
         <div>
             <Row>
@@ -19,6 +19,7 @@ function ItemDetail({ ...elemento }) {
                     <h4>Descripcion: {elemento.descripcion}</h4>
                     <h4 style={{ color: "black" }}>Stock: {elemento.stock}</h4>
                     <h4 style={{ color: "black" }}>Categoria: {elemento.category}</h4>
+                    <h4 style={{ color: "black" }}>Precio: {elemento.precio}$</h4>
                     <ItemCount {...elemento} onAdd={onAdd} />
                 </Col>
             </Row>

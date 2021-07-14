@@ -12,7 +12,7 @@ function Items(props,{items}) {
     }, []);
 
     const productos = async () => {
-        const data = await fetch('https://run.mocky.io/v3/b2d48a90-be5b-4cef-88e8-092e545bc629');
+        const data = await fetch('https://run.mocky.io/v3/6b696f7e-4939-405e-ae49-e6439fba2be4');
         const item = await data.json();
         setProducto(item);
     };

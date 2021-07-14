@@ -5,7 +5,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { cartContext } from '../context/CartContext';
 
 function Cartwidget() {
-    const { carrito, añadirCarrito } = useContext(cartContext);
+    const { carrito } = useContext(cartContext);
     if (!carrito.length) return <Redirect to='/' />
 
     return (

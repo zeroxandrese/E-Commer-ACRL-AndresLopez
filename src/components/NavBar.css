@@ -1,3 +1,10 @@
 #titleNav{
     color: white;
 }
+.iconoConteo{
+    position: absolute;
+    border-radius: 20px;
+    background-color: red;
+    margin-bottom: 60px;
+    margin-left: 1285px;  
+}

@@ -1,8 +1,10 @@
 import { NavDropdown, Button } from 'react-bootstrap';
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import './NavBar.css';
 import Cartwidget from './Cartwidget';
 import { Link, useHistory } from 'react-router-dom';
+import Carrito from './Carrito';
+import { cartContext } from '../context/CartContext';
 
 
 function NavBar() {
@@ -12,6 +14,9 @@ function NavBar() {
         if (e.target.value)
             history.push(`/category/${e.target.value}`);
     }
+
+ 
+    const { carrito } = useContext(cartContext);
 
     return (
         <div className="navbar navbar-expand-lg navbar-dark bg-dark text-center">
@@ -39,6 +44,9 @@ function NavBar() {
                 </ul>
             </div>
             <Cartwidget />
+          <div  className="iconoConteo"> 
+            { carrito.length > 0 ? <span>{carrito.length}</span> : null }
+            </div>
         </div>
 
     )
