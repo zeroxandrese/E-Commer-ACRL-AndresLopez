@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import './App.css';
 import NavBar from './components/NavBar';
@@ -9,10 +9,11 @@ import CategoryListContainer from './components/CategoryListContainer';
 import { CartProvider } from './context/CartContext';
 import Pago from './components/Pago';
 import Carrito from './components/Carrito';
+import { itemsCollection } from './firebase';
 
 
-class App extends React.Component {
-  render() {
+function App() {
+
     return (
       <div className="container-fluid">
         <CartProvider>
@@ -22,7 +23,7 @@ class App extends React.Component {
               <Route exact path="/">
                 <ItemListContainer titulo={'TENEMOS TODO LO QUE NECESITAS EN CUANTO A MODA'} parrafo={'Te ofrecemos los mejores productos, al mejor tiempo y al mejor precio, dale un vistazo a nuestro catalogo para que te enteres de todas las novedades en moda'} />
               </Route>
-              <Route path="/item/:id">
+              <Route path="/items/:id">
                 <ItemDetailContainer />
               </Route>
               <Route path="/Contactenos">
@@ -43,6 +44,5 @@ class App extends React.Component {
       </div>
     );
   }
-}
 
 export default App;

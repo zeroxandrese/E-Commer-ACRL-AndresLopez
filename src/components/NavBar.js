@@ -1,9 +1,7 @@
-import { NavDropdown, Button } from 'react-bootstrap';
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import './NavBar.css';
 import Cartwidget from './Cartwidget';
 import { Link, useHistory } from 'react-router-dom';
-import Carrito from './Carrito';
 import { cartContext } from '../context/CartContext';
 
 
@@ -17,6 +15,11 @@ function NavBar() {
 
  
     const { carrito } = useContext(cartContext);
+    let suma=0;
+     const recorrido = carrito.map(producto => producto.cantidad);
+        recorrido.forEach (function(numero){
+        suma += numero;
+    }); 
 
     return (
         <div className="navbar navbar-expand-lg navbar-dark bg-dark text-center">
@@ -45,7 +48,7 @@ function NavBar() {
             </div>
             <Cartwidget />
           <div  className="iconoConteo"> 
-            { carrito.length > 0 ? <span>{carrito.length}</span> : null }
+            { carrito.length > 0 ? <span>{suma}</span> : null }
             </div>
         </div>
 

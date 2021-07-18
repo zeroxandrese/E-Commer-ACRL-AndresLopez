@@ -9,7 +9,7 @@ export const CartProvider = ({ children }) => {
     const añadirCarrito = (item, cantidad) => {
         if (estaEnCarrito(item.ID)) {
             const nuevoCarrito = carrito.map(elementoCarrito => {
-                if (elementoCarrito.ID === item.ID) {
+                if (elementoCarrito.id === item.id) {
                     return { ...elementoCarrito, cantidad: elementoCarrito.cantidad + cantidad }
                 } else return elementoCarrito;
             })
@@ -17,10 +17,10 @@ export const CartProvider = ({ children }) => {
         } else { setCarrito(previo => [...previo, { ...item, cantidad }]) }
     };
 
-    const estaEnCarrito = id => carrito.some(item => item.ID === id);
+    const estaEnCarrito = id => carrito.some(item => item.id === id);
 
     const eliminarElementoCarrito = id => {
-        const nuevoCarrito = carrito.filter(element => element.ID != id)
+        const nuevoCarrito = carrito.filter(element => element.id !== id)
         setCarrito([...nuevoCarrito])
     }
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
 import { Card } from 'react-bootstrap';
 import './Items.css';
+import { itemsCollection } from '../firebase';
 
 function CategoryListContainer() {
     const { categoryName } = useParams();
@@ -9,19 +10,19 @@ function CategoryListContainer() {
 
     useEffect(() => {
         (async () => {
-            const data = await fetch('https://run.mocky.io/v3/6b696f7e-4939-405e-ae49-e6439fba2be4');
-            if(!categoryName) return setItems(data);
-            const item = await data.json();
-            const categoryFinal = item.filter(x => x.category === categoryName);
-            setItems(categoryFinal);
+                let collection = itemsCollection;
+                if (categoryName) collection = itemsCollection.where("category","==", categoryName)
+                const response = await collection.get()
+                setItems(response.docs.map(item => ({ id: item.id, ...item.data()})))
+            
         })();
     }, [categoryName]);
 
     const construirCards = listaElementos => {
-        return items.map(x => {
+        return listaElementos.map(x => {
             return (
-                <Card key={x.ID} className='cardsh' style={{ width: '18rem' }}>
-                    <Link to={`/item/${x.ID}`}>
+                <Card key={x.id} className='cardsh' style={{ width: '18rem' }}>
+                    <Link to={`/items/${x.id}`}>
                         <Card.Img variant="top" src={x.img} />
                     </Link>
                     <Card.Body>

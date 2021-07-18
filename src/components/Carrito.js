@@ -16,7 +16,7 @@ function Carrito() {
                             <h4>Descripcion: {x.descripcion}</h4>
                             <h4 style={{ color: "black" }}>Stock: {x.stock}</h4>
                             <h4 style={{ color: "black" }}>Cantidad a Comprar: {x.cantidad}</h4>
-                            <Button className="align-center" onClick={() => eliminarElementoCarrito(x.ID)} variant="primary">Eliminar Producto</Button>
+                            <Button className="align-center" onClick={() => eliminarElementoCarrito(x.id)} variant="primary">Eliminar Producto</Button>
                         </Col>
                         <Col className='text-center mt-4 mb-4'>
                             <img src={x.img} alt="imagen producto" width='200px' />

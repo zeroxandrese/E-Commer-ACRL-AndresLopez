@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import ItemDetail from './ItemDetail';
+import { useParams } from 'react-router-dom';
+import { itemsCollection } from '../firebase';
 
 function ItemDetailContainer() {
-    const { id } = useParams();
-    const [elemento, setElemento] = useState({});
+  const { id } = useParams();
+  const [ items, setItems ] = useState([]);
+  
 
+  useEffect(() => {
+      (async()=>{
+        const response = await itemsCollection.doc(id).get()
+        setItems({ id: response.id, ...response.data() })
+      })()
+      
+  }, [id]) 
+  console.log(items)
 
-    useEffect(() => {
-        (async () => {
-            const data = await fetch('https://run.mocky.io/v3/6b696f7e-4939-405e-ae49-e6439fba2be4');
-            const item = await data.json();
-            const productoFinal = item.find(element => element.ID === +id);
-            setElemento(productoFinal);
+  
 
-        })();
-    }, [id]);
 
     return (
         <div>
-            <ItemDetail {...elemento} />
+             <ItemDetail producto={items}/>
         </div>
     )
 }
