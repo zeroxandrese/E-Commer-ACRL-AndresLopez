@@ -12,13 +12,8 @@ function ItemDetailContainer() {
       (async()=>{
         const response = await itemsCollection.doc(id).get()
         setItems({ id: response.id, ...response.data() })
-      })()
-      
+      })() 
   }, [id]) 
-  console.log(items)
-
-  
-
 
     return (
         <div>

@@ -13,3 +13,7 @@ import '@firebase/firestore';
   const app = !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app();
 
  export const itemsCollection = firebase.firestore(app).collection("productos");
+
+ export const itemsCollection2 = firebase.firestore(app).collection("pedidos");
+
+ export const itemsCollection3 = firebase.firestore(app).collection("contactanos");

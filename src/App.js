@@ -9,7 +9,6 @@ import CategoryListContainer from './components/CategoryListContainer';
 import { CartProvider } from './context/CartContext';
 import Pago from './components/Pago';
 import Carrito from './components/Carrito';
-import { itemsCollection } from './firebase';
 
 
 function App() {

@@ -4,7 +4,7 @@ import { Card } from 'react-bootstrap';
 import './Items.css';
 import { itemsCollection } from '../firebase';
 
-function Items({titulo, parrafo}) {
+function Items() {
 const [items, setItems] = useState([]);
 
   useEffect(() => {
