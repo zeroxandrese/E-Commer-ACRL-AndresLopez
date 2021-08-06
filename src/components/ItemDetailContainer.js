@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import ItemDetail from './ItemDetail';
 import { useParams } from 'react-router-dom';
 import { itemsCollection } from '../firebase';
+import Footer from './Footer';
+import './Footer.css';
 
 function ItemDetailContainer() {
   const { id } = useParams();
@@ -16,8 +18,13 @@ function ItemDetailContainer() {
   }, [id]) 
 
     return (
+      <div>
         <div>
-             <ItemDetail producto={items}/>
+             <ItemDetail producto={items}/>   
+        </div>
+        <div align="center">
+          <Footer />
+        </div>
         </div>
     )
 }

@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap';
 import { itemsCollection3 } from '../firebase';
+import Footer from './Footer';
+import { toast } from 'react-toastify';
 
 function Contactenos() {
 
@@ -18,7 +20,10 @@ function Contactenos() {
     const handleOnSubmit = (e) => {
         e.preventDefault();
         agregarComentario(values);
-        setValues(valorInicial);     
+        toast('Consulta enviada',{
+            type: 'info'
+        })
+        setValues(valorInicial);   
     };
 
     const handleOnChange = (e) => {
@@ -39,6 +44,9 @@ function Contactenos() {
                 </Form.Group>
                 <Button type="submit" variant="primary">Enviar</Button>
             </Form>
+            <div align="center">
+                <Footer />
+            </div>
         </div>
     )
 }

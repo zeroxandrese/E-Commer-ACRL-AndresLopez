@@ -3,6 +3,7 @@ import './NavBar.css';
 import Cartwidget from './Cartwidget';
 import { Link, useHistory } from 'react-router-dom';
 import { cartContext } from '../context/CartContext';
+import '../App.css';
 
 
 function NavBar() {
@@ -23,9 +24,11 @@ function NavBar() {
 
     return (
         <div className="navbar navbar-expand-lg navbar-dark bg-dark text-center">
+            <div className="App-logo-spin">
             <Link to="/">
-                <h1 id="titleNav">Bienvenidos a ARCL Shop</h1>
+                <h1 id="titleNav">Bienvenidos a ACRL Shop</h1>
             </Link>
+            </div>
             <div className="container-fluid">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item">

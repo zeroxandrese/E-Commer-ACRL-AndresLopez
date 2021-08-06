@@ -7,7 +7,7 @@ export const CartProvider = ({ children }) => {
     const [totalPago, setTotalPago] = useState(0);
     const vaciarCarrito = () => setCarrito([]);
     const añadirCarrito = (item, cantidad) => {
-        if (estaEnCarrito(item.ID)) {
+        if (estaEnCarrito(item.id)) {
             const nuevoCarrito = carrito.map(elementoCarrito => {
                 if (elementoCarrito.id === item.id) {
                     return { ...elementoCarrito, cantidad: elementoCarrito.cantidad + cantidad }

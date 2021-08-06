@@ -14,12 +14,12 @@ const [items, setItems] = useState([]);
     })();
   }, [])
 
-     const construirCards = itemsList => {
+   const construirCards = itemsList => {
         return itemsList.map(x => {
             return (
-                <Card key={x.ID} className='cardsh' style={{ width: '18rem' }}>
+                <Card  className="cardsh" key={x.ID} style={{ width: '15rem' }}>
                     <Link to={`/items/${x.id}`}>
-                        <Card.Img variant="top" src={x.img} />
+                        <Card.Img variant="top" src={x.img} width='15px' height='175px' />
                     </Link>
                     <Card.Body>
                         <Card.Title >{x.producto}</Card.Title>

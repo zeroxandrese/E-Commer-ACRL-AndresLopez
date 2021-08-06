@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { Card } from 'react-bootstrap';
 import './Items.css';
 import { itemsCollection } from '../firebase';
+import Footer from './Footer';
 
 function CategoryListContainer() {
     const { categoryName } = useParams();
@@ -21,9 +22,9 @@ function CategoryListContainer() {
     const construirCards = listaElementos => {
         return listaElementos.map(x => {
             return (
-                <Card key={x.id} className='cardsh' style={{ width: '18rem' }}>
+                <Card key={x.id} className='cardsh' style={{ width: '15rem' }}>
                     <Link to={`/items/${x.id}`}>
-                        <Card.Img variant="top" src={x.img} />
+                        <Card.Img variant="top" src={x.img} width='15px' height='175px' />
                     </Link>
                     <Card.Body>
                         <Card.Title >{x.producto}</Card.Title>
@@ -38,8 +39,13 @@ function CategoryListContainer() {
     }
 
     return (
+        <div>
         <div className='cards'>
             {construirCards(items)}
+        </div>
+        <div align="center">
+        <Footer />
+        </div>
         </div>
     )
 }

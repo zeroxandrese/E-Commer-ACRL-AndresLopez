@@ -9,6 +9,8 @@ import CategoryListContainer from './components/CategoryListContainer';
 import { CartProvider } from './context/CartContext';
 import Pago from './components/Pago';
 import Carrito from './components/Carrito';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -40,6 +42,7 @@ function App() {
             </Switch>
           </BrowserRouter>
         </CartProvider>
+        <ToastContainer />
       </div>
     );
   }

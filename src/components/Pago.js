@@ -2,7 +2,8 @@ import React, { useContext, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { itemsCollection2 } from '../firebase';
 import { cartContext } from '../context/CartContext';
-
+import Footer from './Footer';
+import { toast } from 'react-toastify';
 function Pago() {
     const { carrito, totalPago, vaciarCarrito } = useContext(cartContext);
 
@@ -20,13 +21,17 @@ function Pago() {
     const agregarCompra = async (e) => {
         await itemsCollection2.doc().set(e);
     };
-
+    
     const mostrarId = () => itemsCollection2.orderBy("fechaSolicitud", "desc").limit(1).onSnapshot((querySnapshot) => {
+        var id = 0;
         querySnapshot.forEach((doc) => {
-            const id = doc.id
-            alert("TU PEDIDO SE INGRESO DE MANERA CORRECTA EL CODIGO DE TU PEDIDO ES EL SIGUIENTE" + " " + id)
-            vaciarCarrito();
+        id = doc.id
+            
         });
+        toast("TU PEDIDO SE INGRESO DE MANERA CORRECTA EL CODIGO DE TU PEDIDO ES EL SIGUIENTE" + " " + id ,{
+            type: 'success'
+        })
+        vaciarCarrito();
     });
 
     const handleOnSubmit = (e) => {
@@ -58,6 +63,9 @@ function Pago() {
                 </Form.Group>
                 <Button type="submit" variant="primary">FINALIZAR</Button>
             </Form>
+            <div align="center">
+                <Footer />
+            </div>
         </div>
     )
 }
